@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/mssql/server:2022-latest
 
 # Definir variáveis de ambiente
 ENV ACCEPT_EULA=Y
-ENV SA_PASSWORD=Passw0rd
+ENV SA_PASSWORD=YourStrong!Passw0rd123
 ENV MSSQL_PID=Express
 
 # Mudar permissões no binário do SQL Server
