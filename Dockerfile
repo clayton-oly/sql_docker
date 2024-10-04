@@ -6,8 +6,8 @@ ENV ACCEPT_EULA=Y
 ENV SA_PASSWORD=Passw0rd
 ENV MSSQL_PID=Express
 
-# Mudar o usuário para root para dar permissões
-USER root
+# Mudar permissões no binário do SQL Server
+RUN chmod +x /opt/mssql/bin/sqlservr
 
 # Expor a porta padrão do SQL Server
 EXPOSE 1433
