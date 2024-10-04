@@ -1,13 +1,15 @@
-# Usar a imagem oficial do SQL Server no Linux
+# Use a imagem base do SQL Server 2022
 FROM mcr.microsoft.com/mssql/server:2022-latest
 
-# Definir variáveis de ambiente
+# Defina variáveis de ambiente necessárias
 ENV ACCEPT_EULA=Y
 ENV SA_PASSWORD=YourStrong!Passw0rd123
-ENV MSSQL_PID=Express
 
-# Expor a porta padrão do SQL Server
-EXPOSE 1433
+# Certifique-se de que o arquivo sqlservr é executável
+RUN chmod +x /opt/mssql/bin/sqlservr
 
-# Rodar o SQL Server
-CMD /opt/mssql/bin/sqlservr
+# Mude para o usuário mssql
+USER mssql
+
+# Comando para iniciar o SQL Server
+CMD ["/opt/mssql/bin/sqlservr"]
