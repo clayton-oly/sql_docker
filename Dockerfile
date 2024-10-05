@@ -5,8 +5,8 @@ FROM mcr.microsoft.com/mssql/server:2022-latest
 ENV ACCEPT_EULA=Y
 ENV SA_PASSWORD=D@silva123@
 
-# Mude para o usuário mssql
-USER mssql
+# Mude para o usuário root
+USER root
 
 # Comando para iniciar o SQL Server
 CMD ["/opt/mssql/bin/sqlservr"]
