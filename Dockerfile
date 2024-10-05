@@ -3,10 +3,7 @@ FROM mcr.microsoft.com/mssql/server:2022-latest
 
 # Defina variáveis de ambiente necessárias
 ENV ACCEPT_EULA=Y
-ENV SA_PASSWORD=YourStrong!Passw0rd123
-
-# Certifique-se de que o arquivo sqlservr é executável
-RUN chmod +x /opt/mssql/bin/sqlservr
+ENV SA_PASSWORD=D@silva123@
 
 # Mude para o usuário mssql
 USER mssql
