@@ -1,17 +1,17 @@
 FROM mcr.microsoft.com/mssql/server:2022-latest
 
-# Defina variáveis de ambiente necessárias
+# Definindo variáveis de ambiente de forma segura
 ENV ACCEPT_EULA=Y
-ENV SA_PASSWORD D@silva123@
+ENV SA_PASSWORD=${SA_PASSWORD:-"D@silva123@"}
 
-# Crie um usuário não-root
+# Criando um usuário não-root para segurança
 RUN useradd -m -s /bin/bash sqluser
 USER sqluser
 
-# Configure permissões para o usuário sqluser
+# Configurando permissões para o usuário sqluser
 RUN chown -R sqluser:sqluser /var/opt/mssql
 
-# Copie scripts de inicialização (se necessário)
+# Copiando scripts de inicialização (opcional)
 # COPY startup.sh /startup.sh
 # RUN chmod +x /startup.sh
 
