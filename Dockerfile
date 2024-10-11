@@ -1,23 +1,14 @@
 FROM mcr.microsoft.com/mssql/server:2022-latest
 
-# Definindo variáveis de ambiente de forma segura
+# Definindo variáveis de ambiente para aceitar a EULA e definir a senha do SA
 ENV ACCEPT_EULA=Y
 ENV SA_PASSWORD=${SA_PASSWORD:-"D@silva123@"}
 
-# Criando um volume para o /var/opt/mssql
+# Expondo a porta padrão do SQL Server
+EXPOSE 1433
+
+# Volume para persistência de dados
 VOLUME /var/opt/mssql
-
-# Criando um usuário não-root
-USER root
-RUN useradd -m -s /bin/bash sqluser
-USER sqluser
-
-# Configurando permissões para o usuário sqluser
-RUN chmod -R 755 /var/opt/mssql && chown -R sqluser:sqluser /var/opt/mssql
-
-# Copiando scripts de inicialização (opcional)
-# COPY startup.sh /startup.sh
-# RUN chmod +x /startup.sh
 
 # Comando para iniciar o SQL Server
 CMD ["/opt/mssql/bin/sqlservr"]
