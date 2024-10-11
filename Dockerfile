@@ -4,7 +4,11 @@ FROM mcr.microsoft.com/mssql/server:2022-latest
 ENV ACCEPT_EULA=Y
 ENV SA_PASSWORD=${SA_PASSWORD:-"D@silva123@"}
 
-# Criando um usuário não-root para segurança
+# Criando um volume para o /etc/passwd
+VOLUME /etc/passwd
+
+# Criando um usuário não-root
+USER root
 RUN useradd -m -s /bin/bash sqluser
 USER sqluser
 
